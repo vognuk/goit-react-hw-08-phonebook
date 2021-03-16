@@ -14,7 +14,7 @@ import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
 import ContactsView from './views/ContactsView'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { authOperations } from './redux/auth';
+import { authOperations } from './redux/auth'
 import AppBar from './components/AppBar'
 
 class App extends Component {
@@ -29,10 +29,11 @@ class App extends Component {
   };
 
   render() {
-    const { contacts, name, number } = this.props;
+    const { state, contacts, name, number } = this.props;
+    console.log(state);
     return (
       <Container>
-        {/* <AppBar /> */}
+        <AppBar />
         {/* <Suspense fallback={<Preloader />}> */}
         <Switch>
           {/* <Route path={routes.homeView} component={HomeView} /> */}
@@ -71,7 +72,7 @@ const mapStateToProps = state => {
   return {
     // contacts: selectors.getFilteredContacts(state),
     // initialValue: selectors.getFilter(state),
-    // onGetCurretnUser: authOperations.getCurrentUser,
+    onGetCurretnUser: authOperations.getCurrentUser,
   }
 };
 

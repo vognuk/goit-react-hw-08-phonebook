@@ -1,5 +1,6 @@
 import axios from 'axios'
 import authActions from './authActions'
+import authSelectors from './authSelectors'
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com/';
 
@@ -23,7 +24,6 @@ const register = credentials => async dispatch => {
 
     try {
         const response = await axios.post('/users/signup', credentials);
-
         token.set(response.data.token);
         dispatch(authActions.registerSuccess(response.data));
     } catch (error) {
@@ -44,7 +44,6 @@ const logIn = credentials => async dispatch => {
 
     try {
         const response = await axios.post('/users/login', credentials);
-
         token.set(response.data.token);
         dispatch(authActions.loginSuccess(response.data));
     } catch (error) {
@@ -65,7 +64,6 @@ const logOut = () => async dispatch => {
 
     try {
         await axios.post('/users/logout');
-
         token.unset();
         dispatch(authActions.logoutSuccess());
     } catch (error) {
@@ -109,6 +107,7 @@ export default { register, logOut, logIn, getCurrentUser };
 
 // const authOperations = {
 //     register,
+//     logIn,
 // };
 
 // export default authOperations;

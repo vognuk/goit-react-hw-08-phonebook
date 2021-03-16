@@ -75,4 +75,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(LoginView);
-// export default LoginView;

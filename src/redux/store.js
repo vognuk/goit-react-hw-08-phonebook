@@ -12,6 +12,8 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth'
 
+console.log(authReducer);
+
 const middleware = [
     ...getDefaultMiddleware({
         serializableCheck: {
