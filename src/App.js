@@ -1,26 +1,35 @@
-import React, { Component } from 'react' //, { Suspense, lazy } 
+import React, { Component, Suspense, lazy } from 'react' //, { Suspense, lazy } 
 import Container from './components/Container'
-import Form from './components/Form'
-import Contacts from './components/Contacts'
-import Filter from './components/Filter'
+// import Form from './components/Form'
+// import Contacts from './views/ContactsView'
+// import Filter from './components/Filter'
 import { connect } from 'react-redux'
 // import * as action from './redux/actions'
-import * as selectors from './redux/contactsSelectors'
-import operations from './redux/contactsOperations'
-// import { getAllContacts, getLoading } from './redux/contactsSelectors'
-import routes from './routes'
-import HomeView from './views/HomeView'
-import LoginView from './views/LoginView'
-import RegisterView from './views/RegisterView'
+import * as selectors from './redux/contacts/contactsSelectors'
+import operations from './redux/contacts/contactsOperations'
+import { getAllContacts, getLoading } from './redux/contacts/contactsSelectors'
+
+// import HomeView from './views/HomeView'
+// import LoginView from './views/LoginView'
+// import RegisterView from './views/RegisterView'
 import ContactsView from './views/ContactsView'
+
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { authOperations } from './redux/auth'
 import AppBar from './components/AppBar'
 
-class App extends Component {
+import routes from './routes/routes'
+import PrivateRoute from './routes/PrivateRoute'
+import PublicRoute from './routes/PublicRoute'
 
+const HomeView = lazy(() => import('./views/HomeView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const TodosView = lazy(() => import('./views/ContactsView'));
+
+class App extends Component {
   componentDidMount() {
-    // this.props.onGetCurretnUser();
+    this.props.onGetCurretnUser();
     // this.props.initContacts();
   }
 
@@ -29,21 +38,39 @@ class App extends Component {
   };
 
   render() {
-    const { state, contacts, name, number } = this.props;
-    console.log(state);
+    const { state } = this.props;
+    // const { state, contacts, name, number } = this.props;
+    console.log('state in App.js:', state);
     return (
       <Container>
         <AppBar />
-        {/* <Suspense fallback={<Preloader />}> */}
-        <Switch>
-          {/* <Route path={routes.homeView} component={HomeView} /> */}
-          <Route path={routes.loginPage} exact component={LoginView} />
-          <Route path={routes.registerPage} component={RegisterView} />
-          <Route path={routes.contactsPage} component={ContactsView} />
-
-          <Redirect to={routes.homeView} />
-        </Switch>
-        {/* </Suspense> */}
+        <Suspense fallback={<p>Загружаем...</p>}> {/*fallback={<Preloader />}>*/}
+          <Switch>
+            <Route
+              exact
+              path={routes.homeView}
+              component={HomeView} />
+            <PublicRoute
+              restricted
+              redirectTo='/contacts'
+              path={routes.loginPage}
+              component={LoginView}
+            />
+            <PublicRoute
+              restricted
+              redirectTo='/contacts'
+              path={routes.registerPage}
+              component={RegisterView}
+            />
+            <PrivateRoute
+              path={routes.contactsPage}
+              component={ContactsView}
+            // contacts={this.props.contacts}
+            // onDelete={this.props.delContact}
+            />
+            <Redirect to={routes.homeView} />
+          </Switch>
+        </Suspense>
 
         {/* <Form
           name={name}
@@ -75,6 +102,8 @@ const mapStateToProps = state => {
     onGetCurretnUser: authOperations.getCurrentUser,
   }
 };
+
+
 
 const mapDispatchToProps = dispatch => {
   return {

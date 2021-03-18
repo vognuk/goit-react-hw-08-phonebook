@@ -1,69 +1,98 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import Container from '../components/Container';
-// import TodoList from '../components/TodoList';
-// import TodoEditor from '../components/TodoEditor';
-// import Filter from '../components/TodoFilter';
-// import Stats from '../components/Stats';
-// import Modal from '../components/Modal';
-// import IconButton from '../components/IconButton';
-// import { ReactComponent as AddIcon } from '../icons/add.svg';
-// import { todosOperations, todosSelectors } from '../redux/todos';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-// const barStyles = {
-//   display: 'flex',
-//   alignItems: 'flex-end',
-//   marginBottom: 20,
-// };
+import s from '../components/Contacts/Contacts.module.css'
+import ContactsAnimation from '../components/Contacts/ContactsAnimation.module.css'
 
-// class TodosView extends Component {
-//   state = {
-//     showModal: false,
-//   };
+import { connect } from 'react-redux'
+import operations from '../redux/contacts/contactsOperations'
+import * as selectors from '../redux/contacts/contactsSelectors'
+import Form from '../components/Form'
+// import Contacts from './views/ContactsView' //???
+import Filter from '../components/Filter'
 
-//   componentDidMount() {
-//     this.props.fetchTodos();
-//   }
+class ContactsView extends Component {
+    static propTypes = {
+        onDelete: PropTypes.func.isRequired,
+        contacts: PropTypes.arrayOf(
+            PropTypes.exact({
+                id: PropTypes.number.isRequired,
+                name: PropTypes.string.isRequired,
+                number: PropTypes.string.isRequired,
+            })
+        ),
+    };
 
-//   toggleModal = () => {
-//     this.setState(({ showModal }) => ({
-//       showModal: !showModal,
-//     }));
-//   };
+    state = {}
 
-//   render() {
-//     const { showModal } = this.state;
+    render() {
+        const { contacts, onDelete } = this.props;
+        console.log('Контакти, що приходять в ContactsView: ', contacts);
+        const { state, name, number } = this.props;
+        return (<div>
+            <TransitionGroup
+                component="ul"
+                className={s.list}
+            >
+                {contacts.map((elem, id) => ( //contacts
+                    <CSSTransition
+                        key={id}
+                        timeout={250}
+                        classNames={ContactsAnimation}
+                    >
+                        <li className={s.item} key={id}>
+                            {`${elem.name}: ${elem.number}`}
+                            <button
+                                className={s.button}
+                                onClick={() => onDelete(elem.id)}
+                            >
+                                Delete
+              </button>
+                        </li>
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
+            <Form
+                name={name}
+                number={number}
+                contacts={contacts}
+                onChange={this.handleChange}
+                onSubmit={this.checkContact}
+            ></Form>
 
-//     return (
-//       <Container>
-//         <div style={barStyles}>
-//           <Filter />
-//           <Stats />
-//           <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
-//             <AddIcon width="40" height="40" fill="#fff" />
-//           </IconButton>
+            <Filter
+                value={this.props.initialValue}
 
-//           {this.props.isLoadingTodos && <h1>Загружаем...</h1>}
-//         </div>
+                onChangeFilter={this.props.filter}
+            />
 
-//         <TodoList />
+            {/* <Contacts
+                contacts={this.props.contacts}
+                onDelete={this.props.delContact}
+            /> */}
+        </div>
+        );
+    };
+};
 
-//         {showModal && (
-//           <Modal onClose={this.toggleModal}>
-//             <TodoEditor onSave={this.toggleModal} />
-//           </Modal>
-//         )}
-//       </Container>
-//     );
-//   }
-// }
+const mapStateToProps = state => {
+    return {
+        contacts: selectors.getFilteredContacts(state),
+        initialValue: selectors.getFilter(state),
+        // onGetCurretnUser: authOperations.getCurrentUser,
+    }
+};
 
-// const mapStateToProps = state => ({
-//   isLoadingTodos: todosSelectors.getLoading(state),
-// });
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchTodos: () => dispatch(todosOperations.fetchTodos()),
-// });
 
-// export default connect(mapStateToProps, mapDispatchToProps)(TodosView);
+const mapDispatchToProps = dispatch => {
+    return {
+        initContacts: () => dispatch(operations.fetchContacts()),
+        delContact: id => dispatch(operations.delContact(id)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsView);
+
+// export default Contacts;

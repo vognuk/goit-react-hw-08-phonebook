@@ -2,7 +2,7 @@ import axios from 'axios'
 import authActions from './authActions'
 import authSelectors from './authSelectors'
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com'; //убрать слэш?
 
 const token = {
     set(token) {
@@ -12,6 +12,8 @@ const token = {
         axios.defaults.headers.common.Authorization = '';
     },
 };
+
+// export default token;
 
 /*
  * POST @ /users/signup
@@ -46,6 +48,8 @@ const logIn = credentials => async dispatch => {
         const response = await axios.post('/users/login', credentials);
         token.set(response.data.token);
         dispatch(authActions.loginSuccess(response.data));
+        console.log('Дані операції запиту:', response.data);
+        // localStorage.setItem('token', response.data.token);
     } catch (error) {
         console.log("Добавить уведомление об ошибке логина и ее причине(из ответа сервера)", error);
         dispatch(authActions.loginError(error.message));
@@ -95,19 +99,10 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
     try {
         const response = await axios.get('/users/current');
-
         dispatch(authActions.getCurrentUserSuccess(response.data));
     } catch (error) {
-        console.log("2. Добавить уведомление об ошибке получения информации пользователя и ее причине(из ответа сервера)", error)
         dispatch(authActions.getCurrentUserError(error.message));
     }
 };
 
-export default { register, logOut, logIn, getCurrentUser };
-
-// const authOperations = {
-//     register,
-//     logIn,
-// };
-
-// export default authOperations;
+export default { register, logOut, logIn, getCurrentUser }; //, token

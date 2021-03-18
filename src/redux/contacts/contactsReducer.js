@@ -10,7 +10,7 @@ import {
     delContactSuccess,
     delContactError,
     changeFilter,
-} from './actions'
+} from './contactsActions'
 
 const initialState = {
     contacts: {

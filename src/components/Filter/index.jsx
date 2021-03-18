@@ -2,8 +2,8 @@ import React from 'react'
 import s from './Filter.module.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import * as selectors from '../../redux/contactsSelectors'
-import * as action from '../../redux/actions'
+import * as selectors from '../../redux/contacts/contactsSelectors'
+import * as action from '../../redux/contacts/contactsActions'
 
 const Filter = ({ initialValue, onFilterChange }) => {
 

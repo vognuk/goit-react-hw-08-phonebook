@@ -7,8 +7,8 @@ import s from './Form.module.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import validatePhoneNumber from '../../utils/validator'
-import * as selectors from '../../redux/contactsSelectors'
-import operations from '../../redux/contactsOperations'
+import * as selectors from '../../redux/contacts/contactsSelectors'
+import operations from '../../redux/contacts/contactsOperations'
 
 class Form extends Component {
   static propTypes = {
