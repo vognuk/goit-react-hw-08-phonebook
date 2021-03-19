@@ -5,14 +5,10 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import s from './Contacts.module.css'
 import ContactsAnimation from './ContactsAnimation.module.css'
 import * as selectors from '../../redux/contacts/contactsSelectors'
-import * as authSelectors from '../../redux/auth/authSelectors'
-import operations from '../../redux/contacts/contactsOperations'
 import authOperations from '../../redux/auth/authOperations'
 import { connect } from 'react-redux'
 
 const Contacts = ({ contacts, onDelete, initContacts }) => {
-    console.log('Контакти, що приходять в Contacts: ', initContacts);
-
     return (<div>
         <TransitionGroup
             component="ul"
@@ -53,7 +49,6 @@ Contacts.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        // contacts: selectors.getFilteredContacts(state),
         initialValue: selectors.getFilter(state),
         initContacts: authOperations.fetchContacts,
     }

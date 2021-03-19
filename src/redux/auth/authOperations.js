@@ -1,6 +1,5 @@
 import axios from 'axios'
 import authActions from './authActions'
-import authSelectors from './authSelectors'
 
 // axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -13,8 +12,6 @@ const token = {
     },
 };
 
-// export default token;
-
 /*
  * POST @ /users/signup
  * body { name, email, password }
@@ -23,7 +20,6 @@ const token = {
  */
 const register = credentials => async dispatch => {
     dispatch(authActions.registerRequest());
-
     try {
         const response = await axios.post('/users/signup', credentials);
         token.set(response.data.token);
@@ -48,8 +44,6 @@ const logIn = credentials => async dispatch => {
         const response = await axios.post('/users/login', credentials);
         token.set(response.data.token);
         dispatch(authActions.loginSuccess(response.data));
-        console.log('Дані операції запиту:', response.data);
-        // localStorage.setItem('token', response.data.token);
     } catch (error) {
         console.log("Добавить уведомление об ошибке логина и ее причине(из ответа сервера)", error);
         dispatch(authActions.loginError(error.message));

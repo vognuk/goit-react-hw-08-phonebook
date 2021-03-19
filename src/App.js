@@ -1,14 +1,13 @@
 import React, { Component, Suspense, lazy } from 'react'
-import Container from './components/Container'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
+import { authOperations } from './redux/auth'
 
 import ContactsView from './views/ContactsView'
 
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { authOperations } from './redux/auth'
 import AppBar from './components/AppBar'
-import operations from './redux/contacts/contactsOperations'
+import Container from './components/Container'
 
 import routes from './routes/routes'
 import PrivateRoute from './routes/PrivateRoute'
@@ -17,7 +16,7 @@ import PublicRoute from './routes/PublicRoute'
 const HomeView = lazy(() => import('./views/HomeView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView'));
-const TodosView = lazy(() => import('./views/ContactsView'));
+// const ContactsView = lazy(() => import('./views/ContactsView'));
 
 class App extends Component {
   componentDidMount() {
@@ -30,7 +29,6 @@ class App extends Component {
   };
 
   render() {
-    const { state } = this.props;
     return (
       <Container>
         <AppBar />
@@ -64,19 +62,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    // onGetCurretnUser: authOperations.getCurrentUser,
-    // initContacts: operations.fetchContacts,
-  }
-};
 
 const mapDispatchToProps = {
-
   onGetCurretnUser: authOperations.getCurrentUser,
-  // contacts: () => dispatch(operations.fetchContacts()),
-  // delContact: id => dispatch(operations.delContact(id)),
-
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

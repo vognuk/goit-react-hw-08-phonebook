@@ -4,14 +4,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as selectors from '../redux/contacts/contactsSelectors'
 import operations from '../redux/contacts/contactsOperations'
-import authOperations from '../redux/auth/authOperations'
 import Form from '../components/Form'
 import Contacts from '../components/Contacts'
 import Filter from '../components/Filter'
 
 class ContactsView extends Component {
     componentDidMount() {
-
         this.props.initContacts();
     }
 
@@ -29,9 +27,7 @@ class ContactsView extends Component {
     state = {}
 
     render() {
-        const { contacts, onDelete } = this.props;
-        console.log('Контакти, що приходять в ContactsView: ', contacts);
-        const { state, name, number } = this.props;
+        const { contacts, name, number } = this.props;
         return (<div>
             <Form
                 name={name}
@@ -59,19 +55,13 @@ class ContactsView extends Component {
 const mapStateToProps = state => {
     return {
         contacts: selectors.getFilteredContacts(state),
-        // initialValue: selectors.getFilter(state),
-        // onGetCurretnUser: authOperations.getCurrentUser,
-        // contacts: selectors.getFilteredContacts(state),
     }
 };
-
-
 
 const mapDispatchToProps = dispatch => {
     return {
         initContacts: () => dispatch(operations.fetchContacts()),
         delContact: id => dispatch(operations.delContact(id)),
-        // contacts: () => dispatch(authOperations.fetchContacts()),
     }
 };
 

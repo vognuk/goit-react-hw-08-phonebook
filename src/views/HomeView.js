@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import { connect } from 'react-redux'
 import wellcomePicture from '../images/alf.png'
 
@@ -26,7 +25,7 @@ const HomeView = () => (
     <div style={styles.container}>
         <h1 style={styles.title}>
             Wellcome! {' '}
-            <img style={styles.picture} alt="Wellcome picture" src={wellcomePicture} />
+            <img style={styles.picture} alt="Wellcome" src={wellcomePicture} />
             {/* <span role="img" aria-label="Иконка приветствия"> */}
             {/* 💁‍♀️ */}
             {/* </span> */}
@@ -39,4 +38,4 @@ const mapDispatchToProps = state => ({
 });
 
 
-export default connect()(HomeView);
+export default connect(null, mapDispatchToProps)(HomeView);

@@ -1,7 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import contactsReducer from './contacts/contactsReducer'
 import loading from './contacts/contactsReducer'
-// import logger from 'redux-logger'
 import {
     persistStore,
     persistReducer,
@@ -14,9 +13,6 @@ import {
 } from 'redux-persist'
 import { authReducer } from './auth'
 import storage from 'redux-persist/lib/storage'
-// import { todosReducer } from './todos';
-
-console.log(authReducer);
 
 const middleware = [
     ...getDefaultMiddleware({
@@ -31,7 +27,6 @@ const middleware = [
             ],
         },
     }),
-    // logger
 ];
 
 const authPersistConfig = {

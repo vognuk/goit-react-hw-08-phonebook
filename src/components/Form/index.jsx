@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import validatePhoneNumber from '../../utils/validator'
 import * as selectors from '../../redux/contacts/contactsSelectors'
 import operations from '../../redux/contacts/contactsOperations'
-import authOperations from '../../redux/auth/authOperations'
 
 class Form extends Component {
   static propTypes = {
@@ -141,7 +140,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // contacts: () => dispatch(authOperations.fetchContacts()),
     addContact: (contact) => dispatch(operations.addContact(contact)),
   }
 };

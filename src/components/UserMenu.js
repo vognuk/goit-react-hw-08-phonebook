@@ -1,5 +1,4 @@
 import React from 'react'
-import AppBar from './AppBar'
 import { connect } from 'react-redux'
 import { authSelectors, authOperations } from '../redux/auth'
 import defaultAvatar from '../images/defaultAvatar.jpg'
