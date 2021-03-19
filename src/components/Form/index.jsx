@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import validatePhoneNumber from '../../utils/validator'
 import * as selectors from '../../redux/contacts/contactsSelectors'
 import operations from '../../redux/contacts/contactsOperations'
+import authOperations from '../../redux/auth/authOperations'
 
 class Form extends Component {
   static propTypes = {
@@ -16,7 +17,7 @@ class Form extends Component {
     number: PropTypes.string,
     contacts: PropTypes.arrayOf(
       PropTypes.exact({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         number: PropTypes.string.isRequired,
       })
@@ -140,6 +141,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    // contacts: () => dispatch(authOperations.fetchContacts()),
     addContact: (contact) => dispatch(operations.addContact(contact)),
   }
 };

@@ -2,7 +2,7 @@ import axios from 'axios'
 import authActions from './authActions'
 import authSelectors from './authSelectors'
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 const token = {
     set(token) {
@@ -104,4 +104,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
     }
 };
 
-export default { register, logOut, logIn, getCurrentUser }; //, token
+export default { register, logOut, logIn, getCurrentUser };

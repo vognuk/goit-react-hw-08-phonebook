@@ -10,16 +10,14 @@ import {
     delContactSuccess,
     delContactError,
 } from './contactsActions'
-import token from '../auth/authOperations';
+// import token from '../auth/authOperations';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com'
 
 const fetchContacts = () => async dispatch => {
     dispatch(initContactsRequest());
-    // token.set(localStorage.getItem('token'));
-    // token.set(localStorage.getItem('token'));
     await axios
-        .get('/contacts') //, localStorage.getItem('token')
+        .get('/contacts')
         .then(({ data }) => dispatch(initContactsSuccess(data)))
         .catch(error => dispatch(initContactsError(error.massage)));
 };

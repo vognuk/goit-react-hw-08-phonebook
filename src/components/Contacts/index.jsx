@@ -5,11 +5,13 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import s from './Contacts.module.css'
 import ContactsAnimation from './ContactsAnimation.module.css'
 import * as selectors from '../../redux/contacts/contactsSelectors'
+import * as authSelectors from '../../redux/auth/authSelectors'
 import operations from '../../redux/contacts/contactsOperations'
+import authOperations from '../../redux/auth/authOperations'
 import { connect } from 'react-redux'
 
-const Contacts = ({ contacts, onDelete }) => {
-    // console.log('Контакти, що приходять в Contacts: ', initContacts);
+const Contacts = ({ contacts, onDelete, initContacts }) => {
+    console.log('Контакти, що приходять в Contacts: ', initContacts);
 
     return (<div>
         <TransitionGroup
@@ -42,7 +44,7 @@ Contacts.propTypes = {
     onDelete: PropTypes.func.isRequired,
     contacts: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             number: PropTypes.string.isRequired,
         })
@@ -53,14 +55,13 @@ const mapStateToProps = state => {
     return {
         // contacts: selectors.getFilteredContacts(state),
         initialValue: selectors.getFilter(state),
-        // onGetCurretnUser: authOperations.getCurrentUser,
+        initContacts: authOperations.fetchContacts,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        initContacts: () => dispatch(operations.fetchContacts()),
-        // delContact: id => dispatch(operations.delContact(id)),
+        initContacts: () => dispatch(authOperations.fetchContacts()),
     }
 };
 

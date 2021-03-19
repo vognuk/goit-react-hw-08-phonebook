@@ -67,17 +67,16 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     // onGetCurretnUser: authOperations.getCurrentUser,
+    // initContacts: operations.fetchContacts,
   }
 };
 
+const mapDispatchToProps = {
 
+  onGetCurretnUser: authOperations.getCurrentUser,
+  // contacts: () => dispatch(operations.fetchContacts()),
+  // delContact: id => dispatch(operations.delContact(id)),
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onGetCurretnUser: authOperations.getCurrentUser,
-    initContacts: () => dispatch(operations.fetchContacts()),
-    // delContact: id => dispatch(operations.delContact(id)),
-  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

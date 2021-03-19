@@ -10,11 +10,16 @@ import Contacts from '../components/Contacts'
 import Filter from '../components/Filter'
 
 class ContactsView extends Component {
+    componentDidMount() {
+
+        this.props.initContacts();
+    }
+
     static propTypes = {
-        onDelete: PropTypes.func.isRequired,
+        onDelete: PropTypes.func,
         contacts: PropTypes.arrayOf(
             PropTypes.exact({
-                id: PropTypes.number.isRequired,
+                id: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired,
                 number: PropTypes.string.isRequired,
             })
@@ -56,6 +61,7 @@ const mapStateToProps = state => {
         contacts: selectors.getFilteredContacts(state),
         // initialValue: selectors.getFilter(state),
         // onGetCurretnUser: authOperations.getCurrentUser,
+        // contacts: selectors.getFilteredContacts(state),
     }
 };
 
@@ -65,6 +71,7 @@ const mapDispatchToProps = dispatch => {
     return {
         initContacts: () => dispatch(operations.fetchContacts()),
         delContact: id => dispatch(operations.delContact(id)),
+        // contacts: () => dispatch(authOperations.fetchContacts()),
     }
 };
 
