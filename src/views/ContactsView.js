@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-
-import s from '../components/Contacts/Contacts.module.css'
-import ContactsAnimation from '../components/Contacts/ContactsAnimation.module.css'
 
 import { connect } from 'react-redux'
-import operations from '../redux/contacts/contactsOperations'
 import * as selectors from '../redux/contacts/contactsSelectors'
+import operations from '../redux/contacts/contactsOperations'
+import authOperations from '../redux/auth/authOperations'
 import Form from '../components/Form'
-// import Contacts from './views/ContactsView' //???
+import Contacts from '../components/Contacts'
 import Filter from '../components/Filter'
 
 class ContactsView extends Component {
@@ -31,28 +28,6 @@ class ContactsView extends Component {
         console.log('Контакти, що приходять в ContactsView: ', contacts);
         const { state, name, number } = this.props;
         return (<div>
-            <TransitionGroup
-                component="ul"
-                className={s.list}
-            >
-                {contacts.map((elem, id) => ( //contacts
-                    <CSSTransition
-                        key={id}
-                        timeout={250}
-                        classNames={ContactsAnimation}
-                    >
-                        <li className={s.item} key={id}>
-                            {`${elem.name}: ${elem.number}`}
-                            <button
-                                className={s.button}
-                                onClick={() => onDelete(elem.id)}
-                            >
-                                Delete
-              </button>
-                        </li>
-                    </CSSTransition>
-                ))}
-            </TransitionGroup>
             <Form
                 name={name}
                 number={number}
@@ -67,10 +42,10 @@ class ContactsView extends Component {
                 onChangeFilter={this.props.filter}
             />
 
-            {/* <Contacts
+            <Contacts
                 contacts={this.props.contacts}
                 onDelete={this.props.delContact}
-            /> */}
+            />
         </div>
         );
     };
@@ -79,7 +54,7 @@ class ContactsView extends Component {
 const mapStateToProps = state => {
     return {
         contacts: selectors.getFilteredContacts(state),
-        initialValue: selectors.getFilter(state),
+        // initialValue: selectors.getFilter(state),
         // onGetCurretnUser: authOperations.getCurrentUser,
     }
 };
@@ -94,5 +69,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsView);
-
-// export default Contacts;

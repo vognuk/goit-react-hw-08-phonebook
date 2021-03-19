@@ -14,18 +14,6 @@ import token from '../auth/authOperations';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com'
 
-
-// axios.put(
-//     // `${base_url}/user`,
-//     null,
-//     {
-//         // params: params,
-//         headers: {
-//             Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUwNjdhZjYwN2Y5YjAwMTc0NWYzOWYiLCJpYXQiOjE2MTU5Nzc0Mzl9.ZVlV0SwSO84V0tt-T_n7caYwNfPdnUIbsY3i-K4mIXo"
-//         }
-//     }
-// );
-
 const fetchContacts = () => async dispatch => {
     dispatch(initContactsRequest());
     // token.set(localStorage.getItem('token'));

@@ -2,7 +2,7 @@ import axios from 'axios'
 import authActions from './authActions'
 import authSelectors from './authSelectors'
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com'; //убрать слэш?
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 const token = {
     set(token) {
@@ -65,7 +65,6 @@ const logIn = credentials => async dispatch => {
  */
 const logOut = () => async dispatch => {
     dispatch(authActions.logoutRequest());
-
     try {
         await axios.post('/users/logout');
         token.unset();

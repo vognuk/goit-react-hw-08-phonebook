@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import wellcomePicture from '../images/alf.png'
 
 const styles = {
     container: {
@@ -13,17 +15,28 @@ const styles = {
         fontSize: 48,
         textAlign: 'center',
     },
+    picture: {
+        width: '100%',
+        marginRight: '15px',
+        marginLeft: '15px',
+    },
 };
 
 const HomeView = () => (
     <div style={styles.container}>
         <h1 style={styles.title}>
-            Приветственная страница нашего сервиса{' '}
-            <span role="img" aria-label="Иконка приветствия">
-                💁‍♀️
-      </span>
+            Wellcome! {' '}
+            <img style={styles.picture} alt="Wellcome picture" src={wellcomePicture} />
+            {/* <span role="img" aria-label="Иконка приветствия"> */}
+            {/* 💁‍♀️ */}
+            {/* </span> */}
         </h1>
     </div>
 );
 
-export default HomeView;
+const mapDispatchToProps = state => ({
+    wellcomePicture: wellcomePicture,
+});
+
+
+export default connect()(HomeView);
