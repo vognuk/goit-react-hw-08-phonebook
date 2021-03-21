@@ -1,7 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { authSelectors } from '../redux/auth'
+import { authSelectors } from '../../redux/auth'
+import Heading from '../Heading'
 
 const styles = {
     link: {
@@ -19,8 +20,11 @@ const styles = {
 const Navigation = ({ isAuthenticated }) => (
     <nav>
         <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
-            Главная
-    </NavLink>
+            {/* Главная */}
+            <Heading />
+            <span role="img" aria-label="Иконка приветствия"></span>
+        </NavLink>
+
 
         {isAuthenticated &&
             <NavLink
@@ -33,6 +37,7 @@ const Navigation = ({ isAuthenticated }) => (
             </NavLink>
         }
     </nav>
+
 );
 
 

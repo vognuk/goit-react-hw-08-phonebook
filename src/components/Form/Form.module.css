@@ -9,15 +9,20 @@
 }
 
 .form {
-  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  background-color: white;
+  padding: 10px;
 }
 
 .label {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
-.input {
+/* .input {
   display: block;
   width: 300px;
   height: 40px;
@@ -26,7 +31,7 @@
   border-style: solid;
   border-radius: 5px;
   outline: none;
-}
+} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -36,17 +41,19 @@ input::-webkit-inner-spin-button {
 }
 
 .button {
-  display: block;
-  width: 100px;
-  margin: 10px 45px 10px auto;
-  padding: 5px;
-  font-size: 16px;
-  color: #413a3a;
+  display: inline-block;
+  /* width: 100px; */
+  margin: 10px 45px 20px auto;
+  width: 120px;
+  /* padding: 5px; */
+  font-size: 14px;
+  /* color: #413a3a; */
+  white-space:  nowrap;
 
-  background-color: #4493fc;
+  /* background-color: #4493fc;
   border-radius: 5px;
   border-color: #413a3a;
-  outline: none;
+  outline: none; */
 }
 
 .button:active {
@@ -62,4 +69,3 @@ button[disabled] {
 button[disabled]:hover {
   background-color: #dfe3e7;
 }
-

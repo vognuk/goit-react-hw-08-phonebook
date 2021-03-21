@@ -1,0 +1,34 @@
+.wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    width: 400px;
+  
+}
+
+img {
+    display: inline-block;
+    margin: 5px;
+}
+
+.userBlock{
+    display: block;
+    width: 270px;
+}
+
+.userName{
+    display: inline-block;
+    margin: 10px;
+
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.button{
+    display: block;
+    font-size: 12px;
+    
+}

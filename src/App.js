@@ -30,7 +30,7 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
+      <Container maxWidth="sm">
         <AppBar />
         <Suspense fallback={<p>Loading...</p>}> {/*fallback={<Preloader />}>*/}
           <Switch>

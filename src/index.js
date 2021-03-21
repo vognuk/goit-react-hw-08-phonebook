@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
 import store from './redux/store'
+import 'fontsource-roboto';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 
 // import 'modern-normalize/modern-normalize.css';
 // import './styles/base.scss';
@@ -12,6 +14,7 @@ import store from './redux/store'
 
 ReactDOM.render(
   <Provider store={store.store}>
+    {/* <CssBaseline /> */}
     <PersistGate loading={null} persistor={store.persistor}>
       <BrowserRouter>
         <App />

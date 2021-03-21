@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import Heading from '../Heading'
+// import Heading from '../Heading'
 import NotificationNumberExist from '../NotificationNumberExist'
 import Animation from '../NotificationNumberExist/Animation.module.css'
 import s from './Form.module.css'
@@ -43,6 +43,7 @@ class Form extends Component {
       name,
       number,
     };
+    console.log(this.state);
 
     e.preventDefault();
 
@@ -58,6 +59,7 @@ class Form extends Component {
       this.setState({ name, number });
       this.props.addContact(contact);
       this.reset();
+      this.props.closeModal();
     } else {
       alert("Enter correct number, please")
     }
@@ -76,7 +78,7 @@ class Form extends Component {
     return (
       <>
         <div className="heading">
-          <Heading />
+          {/* <Heading /> */}
 
           <CSSTransition
             in={sameContact}
