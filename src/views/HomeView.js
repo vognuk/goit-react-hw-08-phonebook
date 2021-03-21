@@ -15,7 +15,7 @@ const styles = {
         textAlign: 'center',
     },
     picture: {
-        width: '100%',
+        width: '70%',
         marginRight: '15px',
         marginLeft: '15px',
     },
@@ -26,8 +26,6 @@ const HomeView = () => (
         <h1 style={styles.title}>
             Wellcome! {' '}
             <img style={styles.picture} alt="Wellcome" src={wellcomePicture} />
-            {/* <span role="img" aria-label="Иконка приветствия"> */}
-            {/* 💁‍♀️ */}
             {/* </span> */}
         </h1>
     </div>
@@ -36,6 +34,5 @@ const HomeView = () => (
 const mapDispatchToProps = state => ({
     wellcomePicture: wellcomePicture,
 });
-
 
 export default connect(null, mapDispatchToProps)(HomeView);

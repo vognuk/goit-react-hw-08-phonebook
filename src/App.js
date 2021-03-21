@@ -1,14 +1,10 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-
 import { connect } from 'react-redux'
 import { authOperations } from './redux/auth'
-
 import ContactsView from './views/ContactsView'
-
 import AppBar from './components/AppBar'
 import Container from './components/Container'
-
 import routes from './routes/routes'
 import PrivateRoute from './routes/PrivateRoute'
 import PublicRoute from './routes/PublicRoute'
@@ -61,7 +57,6 @@ class App extends Component {
     );
   }
 }
-
 
 const mapDispatchToProps = {
   onGetCurretnUser: authOperations.getCurrentUser,

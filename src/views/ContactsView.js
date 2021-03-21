@@ -7,8 +7,8 @@ import operations from '../redux/contacts/contactsOperations'
 import Form from '../components/Form'
 import Contacts from '../components/Contacts'
 import Filter from '../components/Filter'
-
 import Modal from '../components/Modal'
+import { Button } from '@material-ui/core'
 
 class ContactsView extends Component {
     componentDidMount() {
@@ -61,14 +61,18 @@ class ContactsView extends Component {
         this.setState({ showModal: false });
     }
 
-    // state = {}
-
     render() {
-        const { contacts, name, number } = this.props;
+        // const { contacts, name, number } = this.props;
         return (<div>
-            <button onClick={this.toggleModal}>
-                New contact
-            </button>
+            <div style={{ marginTop: "10px", marginLeft: "10px" }}>
+                <Button
+                    onClick={this.toggleModal}
+                    variant="contained"
+                    color="primary"
+                >
+                    New contact
+            </Button>
+            </div>
             <br />
             <Filter
                 value={this.props.initialValue}

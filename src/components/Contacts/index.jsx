@@ -7,6 +7,7 @@ import ContactsAnimation from './ContactsAnimation.module.css'
 import * as selectors from '../../redux/contacts/contactsSelectors'
 import authOperations from '../../redux/auth/authOperations'
 import { connect } from 'react-redux'
+import DeleteTwoTone from '@material-ui/icons/DeleteTwoTone';
 
 const Contacts = ({ contacts, onDelete, initContacts }) => {
     return (<div>
@@ -26,8 +27,11 @@ const Contacts = ({ contacts, onDelete, initContacts }) => {
                             className={s.button}
                             onClick={() => onDelete(elem.id)}
                         >
-                            Delete
-              </button>
+                            <DeleteTwoTone
+                                color="disabled"
+                            />
+
+                        </button>
                     </li>
                 </CSSTransition>
             ))}

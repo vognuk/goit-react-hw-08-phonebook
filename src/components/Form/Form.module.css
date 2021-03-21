@@ -1,71 +1,56 @@
-.star {
+/* .star {
   font-size: 14px;
   color: red;
-}
+} */
 
-.rule {
+/* .rule {
   font-size: 10px;
-
-}
+} */
 
 .form {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: unset;
   flex-wrap: wrap;
+  width: 350px;
+  height: 250px;
+
   background-color: white;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 35px 10px 5px 10px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-/* .input {
-  display: block;
-  width: 300px;
-  height: 40px;
-  margin-bottom: 10px;
+.input {
+  width:100%;
 
-  border-style: solid;
-  border-radius: 5px;
+  border-style: none;
   outline: none;
-} */
+  cursor: pointer;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+   -webkit-appearance: none;
+    margin: 0;
 }
 
 .button {
-  display: inline-block;
-  /* width: 100px; */
-  margin: 10px 45px 20px auto;
-  width: 120px;
-  /* padding: 5px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 10px auto;
+  width: 150px;
   font-size: 14px;
-  /* color: #413a3a; */
   white-space:  nowrap;
-
-  /* background-color: #4493fc;
-  border-radius: 5px;
-  border-color: #413a3a;
-  outline: none; */
+  background-color: transparent;
+  border: none;
 }
 
-.button:active {
-  background-color: #4493fc;
-
-  transform: scale(0.95);
-}
-
-button[disabled] {
-  background-color: #dfe3e7;
-}
-
-button[disabled]:hover {
-  background-color: #dfe3e7;
-}

@@ -15,17 +15,18 @@ const styles = {
 
 const UserMenu = ({ avatar, name, email, onLogout }) => {
     return (
-        <div className='s.wrap'>
-            {/* <div className='s.userBlock'> */}
+        <div className={s.wrap}>
+            {/* <div className={s.userBlock}> */}
+            <span className={s.userName}>
+                {name}
+                {/* ({email}) */}
+            </span>
             <img
+                className={s.avatar}
                 alt=""
                 src={avatar}
                 style={styles.avatar}
             />
-            <span className='s.userName'>
-                {name}
-                {/* ({email}) */}
-            </span>
             {/* </div> */}
             <Button
                 className='s.button'

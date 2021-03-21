@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import validatePhoneNumber from '../../utils/validator'
 import * as selectors from '../../redux/contacts/contactsSelectors'
 import operations from '../../redux/contacts/contactsOperations'
+import { Button, TextField } from '@material-ui/core'
 
 class Form extends Component {
   static propTypes = {
@@ -82,7 +83,7 @@ class Form extends Component {
 
           <CSSTransition
             in={sameContact}
-            timeout={250}
+            timeout={500}
             classNames={Animation}
             unmountOnExit
           >
@@ -93,9 +94,8 @@ class Form extends Component {
           onSubmit={this.handleSubmit}
         >
           <label className={s.label}>
-            Name
-            <span className={s.star}>&#42;</span>
-            <input
+            {/* Name <span className={s.star}>&#42;</span> */}
+            <TextField
               className={s.input}
               type='text'
               name='name'
@@ -103,11 +103,12 @@ class Form extends Component {
               value={name}
               onChange={this.handleChange}
               required
+              variant="outlined"
             />
           </label>
           <label className={s.label}>
-            Number<span className={s.star}>&#42;</span>
-            <input
+            {/* Number <span className={s.star}>&#42;</span> */}
+            <TextField
               className={s.input}
               type='number'
               name='number'
@@ -116,9 +117,10 @@ class Form extends Component {
               maxLength="13"
               onChange={this.handleChange}
               required
+              variant="outlined"
             />
             <span className={s.rule}>
-              <span className={s.star}>&#42;</span> - obligatory fields.
+              {/* <span className={s.star}>&#42;</span> - obligatory fields. */}
             </span>
           </label>
           <button
@@ -126,7 +128,13 @@ class Form extends Component {
             disabled={false}
             onSubmit={this.checkContact}
           >
-            Add contact
+
+            <Button
+              variant="contained"
+              color="primary"
+            >
+              Add contact
+              </Button>
           </button>
         </form>
       </>
